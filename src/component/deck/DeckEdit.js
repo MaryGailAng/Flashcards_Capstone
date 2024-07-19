@@ -16,7 +16,7 @@ function DeckEdit(){
             .then((deck) => {
                 setDeck(deck)})
             .catch(setError);
-        return () => abortController.signal();        
+        return () => abortController.abort();        
     }, [deckId]);
 
     if (error) {
@@ -37,7 +37,7 @@ function DeckEdit(){
             .catch((error) => {
                 return <p>ERROR</p>
             });
-        return () => abortController.signal(); 
+        return () => abortController.abort(); 
     };
 
     const breadcrumb = [

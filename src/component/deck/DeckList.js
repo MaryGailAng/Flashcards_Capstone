@@ -32,7 +32,7 @@ function DeckList(){
     return(
         <div>
             <NavLink to="/decks/new">
-                <button>Create Deck</button>
+                <button type="button">Create Deck</button>
             </NavLink>
             <div>{list}</div>
         </div>

@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function CardAdd({ path }){
+function CardAdd({ pathname }){
     return(
-        <NavLink to={`${path}/cards/new`}><button>Add Cards</button>
+        <NavLink to={`${pathname}/cards/new`}><button>Add Cards</button>
         </NavLink>
     );
 };

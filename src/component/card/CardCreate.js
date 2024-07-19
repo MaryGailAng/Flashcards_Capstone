@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { readDeck, updateCard } from "../../utils/api";
+import { readDeck, createCard } from "../../utils/api";
 import Navigation from "../../Layout/Navigation";
 import CardForm from "./CardForm";
 
@@ -29,7 +29,9 @@ function CardCreate(){
     const handleSubmit = (event) => {
         event.preventDefault();
         const abortController = new AbortController();
-        updateCard(deckId, card, abortController.signal)
+
+        createCard(deckId, card, abortController.signal)
+
             .then(() =>{
                 navigate(`/decks/${deckId}`);
             })

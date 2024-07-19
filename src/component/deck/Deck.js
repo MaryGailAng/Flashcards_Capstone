@@ -7,7 +7,7 @@ function Deck({ deck }) {
         <div>
             <div>
                 <h2>{deck.name}</h2>
-                <p>{deck.cards.length}</p>
+                <p>{deck.cards.length} cards</p>
                 <p>{deck.description}</p>
                 <NavLink to={`/decks/${deck.id}`}>
                     <button>View</button>

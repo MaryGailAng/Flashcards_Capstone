@@ -10,7 +10,8 @@ function Study(){
     const { deckId } = useParams();
     const [ cardFlip, setCardFlip] = useState(false);
     const [ index, setIndex ] = useState(0);
-    const { path } = useLocation();
+    const { pathname } = useLocation();
+
     const breadcrumb = [
         {link: "/", title: "Home", active: false},
         {link: `/decks/${deck.id}`, title: deck.name, active: false},
@@ -28,14 +29,16 @@ function Study(){
         return () => abortController.abort();        
     }, [deckId]);
 
-    if (deck.cards && deck.cards.length <= 2 ){
+    if (!deck.cards || deck.cards.length <= 2 ){
+        const cardLength = deck.cards ? deck.cards.length : 0;
+
         return (
             <div>
                 <Navigation props={breadcrumb} />
                 <h2>{deck.name}: Study</h2>
                 <h3>Not enough cards.</h3>
-                <p>You need at least 3 cards to study. There are {deck.cards.length} cards in this deck.</p>
-                <CardAdd path={path.replace("/study", "")} />
+                <p>You need at least 3 cards to study. There are {cardLength} cards in this deck.</p>
+                <CardAdd pathname={pathname.replace("/study", "")} />
             </div>
         )
     };
@@ -50,7 +53,6 @@ function Study(){
             setCardFlip(false);
         } else {
             const confirm = window.confirm("Restart cards?\n\nClick 'cancel' to return to the home page.");
-
             if (confirm) {
                 setIndex(0);
                 setCardFlip(false);
@@ -60,17 +62,16 @@ function Study(){
             }
         }
     }
-
-
+    
     return (
         <div>
             <Navigation props={breadcrumb} />
-            <h2>{deck.name}: Study</h2>
+            <h2>{deck.name}:Study</h2>
             <div>
                 <div>
                     <h5>Card {index+1} of {deck.cards.length || 0}</h5>
                 </div>
-                <p>{cardFlip ? deck.cards?.[index].back : deck.cards?.[index].front}</p>
+                <p>{cardFlip ? deck.cards?.[index]?.back : deck.cards?.[index]?.front}</p>
                 <button onClick={handleFlip}>Flip</button>
                 {cardFlip && <button onClick={handleClick}>Next</button>}
             </div>        

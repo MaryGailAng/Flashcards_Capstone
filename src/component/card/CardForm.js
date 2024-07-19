@@ -20,9 +20,9 @@ function CardForm({ handleChange, handleSubmit, card, deckId, add }){
                 <textarea id="back" type="textarea" name="back" placeholder="Card Back" 
                     onChange={handleChange} value={card.back || ""} required={true} />
             </div>
-            <button type="button" onClick-={() => {navigate(`/decks/${deckId}`)}}>
+            <button type="button" onClick={() => {navigate(`/decks/${deckId}`)}}>
                 {add ? "Done" : "Cancel"}</button>
-            <button type="submit" onClick-={() => {
+            <button type="submit" onClick={() => {
                 if (add){
                     window.location.reload();
                 }}}>{add ? "Save" : "Submit"}</button>

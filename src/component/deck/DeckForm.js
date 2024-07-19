@@ -34,7 +34,7 @@ function DeckForm(){
             <Navigation props={breadcrumb} />
             <h2>Create Deck</h2>
             <form name="createDeck" onSubmit={handleSubmit}>
-                <div>
+                <div className="formGroup">
                     <label htmlFor="name">
                         Name <input 
                             id="name"
@@ -46,9 +46,9 @@ function DeckForm(){
                         />
                     </label>
                 </div>
-                <div>
+                <div className="formGroup">
                     <label htmlFor="description">
-                        Description <input 
+                        Description <textarea 
                             id="description"
                             type="textarea"
                             name="description"

@@ -10,7 +10,7 @@ function DeckScreen(){
     const [deck, setDeck] = useState({});
     const [cards, setCards] = useState([]);
     const { deckId } = useParams();
-    const { path } = useLocation();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -38,10 +38,13 @@ function DeckScreen(){
             )
         };
     };
+
     const breadcrumb = [
         {link: "/", title: "Home", active: false},
         {link: "", title: "Create Deck", active: true},
     ];
+
+    console.log(pathname);
 
     return(
         <div>
@@ -49,13 +52,13 @@ function DeckScreen(){
             <h2>{deck.name}</h2>
             <p>{deck.description}</p>
             <div>
-                <NavLink to={`${path}/edit`}>
+                <NavLink to={`${pathname}/edit`}>
                     <button>View</button>
                 </NavLink>
-                <NavLink to={`${path}/study`}>
+                <NavLink to={`${pathname}/study`}>
                     <button>Study</button>
                 </NavLink>
-                <CardAdd path={path}/>
+                <CardAdd pathname={pathname}/>
                 <DeckDelete deck={deck}/>
             </div>
             {deck.cards && ( <CardList cards={cards} handleDelete={handleDelete} />)}
